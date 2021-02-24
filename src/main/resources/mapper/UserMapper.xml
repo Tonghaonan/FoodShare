@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.dao.UserDao">
+	<insert id="saveUser" parameterType="com.food.vo.User">
+		insert into user(username,password,phone,createTime,isadmin,isDel,sex,birthday,image)
+		values(#{username},#{password},#{phone},#{createTime},#{isadmin},#{isDel},#{sex},#{birthday},#{image})
+	</insert>
+
+	<select id="getUser" parameterType="com.food.vo.User" resultType="com.food.vo.User">
+		select * from user where BINARY username = #{username} and BINARY password = #{password}
+	</select>
+
+	<select id="getUserByUsername" resultType="com.food.vo.User">
+		select * from user where BINARY username = #{username}
+	</select>
+
+	<update id="updatePwd" parameterType="com.food.vo.User" >
+		update user set password = #{password} where username = #{username}
+	</update>
+
+	<select id="getAllUser" resultType="com.food.vo.User">
+		select * from user
+		<trim prefix="WHERE" prefixOverrides="AND | OR" >
+			<if test="isadmin != null and isadmin != ''">
+				AND BINARY isadmin = #{isadmin}
+			</if>
+			<if test="username != null and username != ''">
+				AND BINARY username like CONCAT(CONCAT('%', #{username}), '%')
+			</if>
+		</trim>
+		order by crttime desc
+		LIMIT #{start}, #{length}
+	</select>
+
+	<select id="getAllUserCount" resultType="java.lang.Integer">
+		select count(1) from user
+		<trim prefix="WHERE" prefixOverrides="AND | OR" >
+			<if test="isadmin != null and isadmin != ''">
+				AND BINARY isadmin = #{isadmin}
+			</if>
+			<if test="username != null and username != ''">
+				AND BINARY username like CONCAT(CONCAT('%', #{username}), '%')
+			</if>
+		</trim>
+	</select>
+
+</mapper>

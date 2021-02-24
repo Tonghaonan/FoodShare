@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.dao.CategoryDao">
+
+	<select id="getCategoryByCid" parameterType="java.lang.Integer" resultType="com.food.vo.Category">
+	select * from category where cid=#{cid};
+	</select>
+
+	<select id="getAllCategory" resultType="com.food.vo.Category">
+	select * from category;
+	</select>
+	
+	<insert id="saveCategory" parameterType="com.food.vo.Category">
+		insert into category (cname) values (#{cname})
+	</insert>
+
+	<update id="updateCategory" parameterType="com.food.vo.Category">
+		update category set cname = #{cname} where cid = #{cid}
+	</update>
+
+	<delete id="delectCategory" parameterType="java.lang.Integer">
+		delete from category where cid = #{cid}
+	</delete>
+</mapper>

@@ -18,5 +18,22 @@ public class PageController {
         return "regist";
     }
 
+    @RequestMapping("/toContact")
+    public String toContact(){
+        return "contact";
+    }
+    @RequestMapping("/toPortfolio")
+    public String toPortfolio(){
+        return "portfolio";
+    }
+    @RequestMapping("/toAbout")
+    public String toAbout(){
+        return "about";
+    }
+    @RequestMapping("/toServices")
+    public String toServices(){
+        return "services";
+    }
+
 
 }

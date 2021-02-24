@@ -62,7 +62,7 @@
         </div>
       <div class="probootstrap-bar">
         <a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span class="oi oi-menu"></span></a>
-        <div class="probootstrap-main-site-logo"><a href="index.jsp">Aside</a></a></div>
+        <div class="probootstrap-main-site-logo"><a href="index.jsp">Aside</a></div>
       </div>
       <div class="card-columns">
 
@@ -70,8 +70,8 @@
           <a href="single.jsp">
             <img class="card-img-top probootstrap-animate" src="/static/images/img_2.jpg" alt="Card image cap">
           </a>
-                    <p>sadasdasdasd</p>
-
+          <p>菜品简介：sadasdasdasd</p>
+          <p STYLE="color: yellowgreen">发布者：sadasdasdasd</p>
         </div>
         <div class="card">
           <a href="single.jsp">
