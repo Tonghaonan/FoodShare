@@ -20,7 +20,48 @@
     <link rel="stylesheet" href="/static/css/animate.css">
     <link rel="stylesheet" href="/static/css/style.css">
 
+
   </head>
+  <style>
+    .star{
+      display: block;
+      position: relative;
+      /*width: 150px;*/
+      height: 60px;
+      padding: 0;
+      border: none;
+    }
+
+    .star > input{
+      position: absolute;
+      margin-right: -100%;
+      opacity: 0;
+      /*float: left;*/
+    }
+
+    .star > label{
+      position: relative;
+      display: inline-block;
+      float: left;
+      width: 30px;
+      height: 30px;
+      color: transparent;
+      background-image: url("/static/images/star.png");
+      background-repeat: no-repeat;
+      background-position: 0 -30px;
+    }
+
+    .star > span{
+      float: left;
+    }
+
+
+    .star > input:focus + label{
+      outline: none;
+    }
+
+    .star > input:focus~label
+  </style>
   <body>
     <aside class="probootstrap-aside js-probootstrap-aside">
       <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
@@ -32,9 +73,9 @@
       <div class="probootstrap-overflow">
         <nav class="probootstrap-nav">
           <ul>
-            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="index.jsp">首页</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="about.jsp">美食推荐</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="services.jsp">上传美食</a></li>
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="#">首页</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="#">美食推荐</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toAddFood">上传美食</a></li>
             <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="portfolio.jsp">我的美食</a></li>
             <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="contact.jsp">关于我们</a></li>
           </ul>
@@ -52,129 +93,54 @@
 
 
     <main role="main" class="probootstrap-main js-probootstrap-main">
-        <div class="col-md-6">
-          <div class="input-group">
-            <input type="text" class="form-control" id="fname" name="fname">
-            <span class="input-group-btn" style="left: 5%">
-            	<input type="submit" class="btn btn-primary" id="submit" name="submit" value="搜索">
-			</span>
+      <form action="${request.contextPath}/getFoodByCidAndFname" method="post" class="probootstrap-form mb-5">
+        <div class="row">
+          <div class="form-group">
+            <select class="form-control" id="ftype" name="cid" style="height: 55px;">
+              <option value="0">全部</option>
+              <c:forEach items="${categoryList}" var="category" varStatus="c">
+                <c:if test="${cid == category.cid}">
+                  <option value="${category.cid}" selected="selected">${category.cname}</option>
+                </c:if>
+                <c:if test="${cid != category.cid}">
+                  <option value="${category.cid}">${category.cname}</option>
+                </c:if>
+              </c:forEach>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" style="width: 350px;" value="${fname}" class="form-control" id="fname" name="fname">
+          </div>
+          <div class="form-group">
+            <input type="submit" style="height: 55px;" class="btn btn-primary" id="submit" name="submit" value="搜索">
           </div>
         </div>
+      </form>
       <div class="probootstrap-bar">
         <a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span class="oi oi-menu"></span></a>
         <div class="probootstrap-main-site-logo"><a href="index.jsp">Aside</a></div>
       </div>
-      <div class="card-columns">
-
+      <div class="card-columns" style="margin-top: 30px;">
+        <c:forEach items="${foodList}" var="food" varStatus="s">
         <div class="card">
           <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_2.jpg" alt="Card image cap">
+            <img class="card-img-top probootstrap-animate" src="${food.image}" alt="Card image cap">
           </a>
-          <p>菜品简介：sadasdasdasd</p>
+          <p>美食名称：${food.fname}</p>
+<%--          <p STYLE="color: yellowgreen">发布者：sadasdasdasd</p>--%>
           <p STYLE="color: yellowgreen">发布者：sadasdasdasd</p>
+          <p>美食分类：asdasd</p>
+          <div class="star">
+            <span>推荐星级：</span>
+            <c:forEach begin="1" end="${food.star}" step="1" varStatus="cnt">
+              <input type="radio" id="rate${cnt.count}" name="star" value="${cnt.count}">
+              <label for="rate${cnt.count}" title="${food.star}星"></label>
+            </c:forEach>
+          </div>
         </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_1.jpg" alt="Card image cap">
-          </a>
-          <p>sadasdasdasd</p>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_3.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_4.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_5.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_6.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_7.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_8.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_9.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_10.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_11.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_12.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_13.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_14.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_15.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_16.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_17.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_18.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_19.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_20.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card">
-          <a href="single.jsp">
-            <img class="card-img-top probootstrap-animate" src="/static/images/img_21.jpg" alt="Card image cap">
-          </a>
-        </div>
-      </div>  
+        </c:forEach>
+      </div>
+
 
       <div class="container-fluid d-md-none">
         <div class="row">

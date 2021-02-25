@@ -4,10 +4,15 @@
 <mapper namespace="com.food.dao.FoodDao">
 
 	<select id="getFoodByCidAndFname" resultType="com.food.vo.Food">
-		select * from food where cid = #{cid}
-		<if test="fname != null and fname != ''">
-			AND BINARY fname = #{fname}
-		</if>
+		select * from food
+		<trim prefix="WHERE" prefixOverrides="AND | OR" >
+			<if test="cid != null and cid != 0">
+				AND BINARY cid = #{cid}
+			</if>
+			<if test="fname != null and fname != ''">
+				AND BINARY fname like CONCAT(CONCAT('%', #{fname}), '%')
+			</if>
+		</trim>
 	</select>
 
 	<select id="getAllFoodByFname" resultType="com.food.vo.Food">
