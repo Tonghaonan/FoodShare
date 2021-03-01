@@ -42,6 +42,27 @@ public class User {
      */
     private String image;
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+    }
+
+    public User(int uid, String username, String password, String sex, String birthday, String phone, String createTime, String isAdmin, String isDel, String image) {
+        this.uid = uid;
+        this.username = username;
+        this.password = password;
+        this.sex = sex;
+        this.birthday = birthday;
+        this.phone = phone;
+        this.createTime = createTime;
+        this.isAdmin = isAdmin;
+        this.isDel = isDel;
+        this.image = image;
+    }
+
     public int getUid() {
         return uid;
     }
@@ -120,5 +141,21 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", phone='" + phone + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", isAdmin='" + isAdmin + '\'' +
+                ", isDel='" + isDel + '\'' +
+                ", image='" + image + '\'' +
+                '}';
     }
 }

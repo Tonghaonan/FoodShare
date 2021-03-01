@@ -30,7 +30,13 @@
       <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
 
         <a href="index.jsp" class="mb-2 d-block probootstrap-logo">美食分享</a>
-        <p class="mb-0"><a href="login.HTML" target="_blank">登录</a> / <a href="regist.jsp" target="_blank">注册</a></p>
+          <c:if test="${user1!=null}">
+              <p class="mb-0"><img style="height: 30px ;width: 30px" src="${pageContext.request.contextPath}/static/${user1.image}" />
+                  <a href="${pageContext.request.contextPath}/#" target="_blank">欢迎 ${user1.username} !</a></p>
+          </c:if>
+          <c:if test="${user1==null}">
+              <p class="mb-0"><a href="/toLogin" target="_blank" >登录</a> / <a href="/toRegist" target="_blank">注册</a></p>
+          </c:if>
       </div>
       <div class="probootstrap-overflow">
         <nav class="probootstrap-nav">

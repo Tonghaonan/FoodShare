@@ -13,6 +13,10 @@ import java.util.List;
  */
 @Component
 public interface UserDao {
+    //完善用户信息
+    public User update(User user);
+    //注册信息
+    public void registry(User user);
 	//保存用户信息
 	public void saveUser(User user) throws Exception;
 	//用户登录

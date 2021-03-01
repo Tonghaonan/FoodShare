@@ -26,16 +26,16 @@
 		<div class="card border-0 shadow card--login is-show" id="login">
 			<div class="card-body">
 				<h2 class="card-title">欢迎登录！</h2>
-				<p>用邮箱登录</p>
-				<form>
+				<p>用登录名登录</p>
+				<form action="${pageContext.request.contextPath}/login">
 					<div class="form-group">
-						<input class="form-control" type="email" placeholder="邮箱" required="required">
+						<input class="form-control" type="text" name="username" value="请输入你的账号" placeholder="账号" required="required">
 					</div>
 					<div class="form-group">
-						<input class="form-control" type="password" placeholder="密码" required="required">
+						<input class="form-control" type="password" name="password" value="请输入你的密码" placeholder="密码" required="required">
 					</div>
 					<p><a href="#">忘记密码?</a></p>
-					<button class="btn btn-lg">登录</button>
+					<button class="btn btn-lg" id="login">登录</button>
 				</form>
 			</div>
 			<button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
@@ -44,5 +44,7 @@
 	</div>
 	
 </div>
+<script type="text/javascript">
+</script>
 </body>
 </html>

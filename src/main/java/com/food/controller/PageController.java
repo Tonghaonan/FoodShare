@@ -13,15 +13,28 @@ import java.util.List;
 
 @Controller
 public class PageController {
+
     @Autowired
     private FoodService foodService;
     @Autowired
     private CategoryService categoryService;
 
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("/toEditUserInfo")
+    public String toEditUserInfo(){
+
+        return "edituserinfo";
+    }
+//    登录
+
     @RequestMapping("/toLogin")
     public String toLogin(){
         return "login";
     }
+//    首页
     @RequestMapping("/toIndex")
     public String toIndex(Model model){
         try {
@@ -34,6 +47,7 @@ public class PageController {
         }
         return "index";
     }
+//    注册
     @RequestMapping("/toRegist")
     public String toRegist(){
         return "regist";

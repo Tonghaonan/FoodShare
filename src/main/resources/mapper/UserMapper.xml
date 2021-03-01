@@ -2,11 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.food.dao.UserDao">
+
+    <update id="update" parameterType="com.food.vo.User">
+        update user set username=#{username},phone=#{phone},sex=#{sex},birthday=${birthday},image=#{image} where uid=#{uid};
+    </update>
+    <insert id="registry" parameterType="com.food.vo.User">
+        insert into user VALUES(null,#{username},#{password},null,SYSDATE(),DEFAULT,DEFAULT,null,null,'head/default.jpg')
+    </insert>
+
 	<insert id="saveUser" parameterType="com.food.vo.User">
 		insert into user(username,password,phone,createTime,isadmin,isDel,sex,birthday,image)
 		values(#{username},#{password},#{phone},#{createTime},#{isadmin},#{isDel},#{sex},#{birthday},#{image})
 	</insert>
-
 	<select id="getUser" parameterType="com.food.vo.User" resultType="com.food.vo.User">
 		select * from user where BINARY username = #{username} and BINARY password = #{password}
 	</select>

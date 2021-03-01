@@ -24,15 +24,12 @@
 			<div class="card-body">
 				<h2 class="card-title">会员注册</h2>
 				<p>使用您的电子邮箱进行注册</p>
-				<form>
+				<form action="${pageContext.request.contextPath}/regist">
 					<div class="form-group">
-						<input class="form-control" type="text" placeholder="用户名" required="required">
+						<input class="form-control" name="username" type="text" placeholder="用户名" required="required">
 					</div>
-<!--					<div class="form-group">
-						<input class="form-control" type="email" placeholder="邮箱" required="required">
-					</div>-->
 					<div class="form-group">
-						<input class="form-control" type="password" placeholder="密码" required="required">
+						<input class="form-control" name="password" type="password" placeholder="密码" required="required">
 					</div>
 					<button class="btn btn-lg">注册</button>
 				</form>
