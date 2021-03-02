@@ -64,9 +64,9 @@ public class UserController {
         }else {
             User user1 = userService.selectByUsername(user.getUsername());
             model.addAttribute("message",success);
-//            model.addAttribute("user1",user1);
-            HttpSession session = request.getSession();
-            session.setAttribute("user1",user1);
+            model.addAttribute("user1",user1);
+//            HttpSession session = request.getSession();
+//            session.setAttribute("user1",user1);
             return "index";
         }
     }
