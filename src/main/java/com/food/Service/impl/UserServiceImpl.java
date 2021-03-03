@@ -22,12 +22,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(User user) throws Exception {
+        boolean flag=false;
         List<User> user1 = userDao.getUser(user);
-        if (user1==null){
-            return false;
-        }else {
-            return true;
+        for (User u : user1
+        ) {
+            if (u == null) {
+                flag=false;
+            } else {
+                flag=true;
+            }
         }
+        return flag;
     }
 
     /**

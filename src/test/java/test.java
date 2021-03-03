@@ -20,6 +20,13 @@ public class test {
     UserService userService;
 
     @Test
+    public void test4() throws Exception {
+        boolean login = userService.login(
+                new User("张三", "123")
+        );
+        System.out.println(login);
+    }
+    @Test
     public void test3() throws Exception{
         User user = userService.selectByUsername("张三");
         System.out.println(user);
