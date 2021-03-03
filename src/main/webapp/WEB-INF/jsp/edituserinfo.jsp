@@ -43,8 +43,9 @@
           <ul>
             <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="#">首页</a></li>
             <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="#">美食推荐</a></li>
-            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="/toAddFood">上传美食</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toAddFood">上传美食</a></li>
             <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="portfolio.jsp">我的美食</a></li>
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="/toAddFood">个人信息</a></li>
             <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="contact.jsp">关于我们</a></li>
           </ul>
         </nav>
@@ -91,8 +92,8 @@
                         <input type="text" class="form-control" id="birthday" name="username" value="${user1.birthday}">
                     </div>
                     <div class="form-group">
-                        <label for="fname">头像</label>
-                        <input type="text" class="form-control" id="head" name="username" value="${user1.sex}">
+                        <label for="fname"> <img src="${pageContext.request.contextPath}/head${user1.image}"></label>
+                        <button for="fname">点击修改</button>
                     </div>
                   <div class="form-group">
                     <input type="submit" class="btn btn-primary" id="submit" name="submit" value="确认提交信息">
