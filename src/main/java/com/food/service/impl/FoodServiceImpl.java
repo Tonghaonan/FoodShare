@@ -2,6 +2,9 @@ package com.food.service.impl;
 
 import com.food.dao.FoodDao;
 import com.food.service.FoodService;
+import com.food.util.PageResult;
+import com.food.util.PageUtil;
+import com.food.vo.Category;
 import com.food.vo.Food;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +39,11 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
+    public Food getFoodByFid(int fid) throws Exception {
+        return foodDao.getFoodByFid(fid);
+    }
+
+    @Override
     public void saveFood(Food food, MultipartFile file) throws Exception {
         //保存图片
         if (file.isEmpty()) {
@@ -58,11 +66,24 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public void updateFood(Food food) throws Exception {
-
+        foodDao.updateFood(food);
     }
 
     @Override
     public void delectFood(int fid) throws Exception {
+        foodDao.deleteFood(fid);
+    }
 
+    @Override
+    public List<Food> getAllFoodByUid(int uid) throws Exception {
+        return foodDao.getAllFoodByUid(uid);
+    }
+
+    @Override
+    public PageResult getAllFoodByFnameAndPage(String fname,PageUtil pageUtil) throws Exception {
+        List<Food> userList = foodDao.getAllFoodByFnameAndPage(fname,pageUtil.getStart(), pageUtil.getLimit());
+        int cnt = foodDao.getAllFoodByFnameCount();
+        PageResult pageResult = new PageResult(userList,cnt,pageUtil.getLimit(),pageUtil.getPage());
+        return pageResult;
     }
 }

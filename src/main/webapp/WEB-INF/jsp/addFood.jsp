@@ -41,11 +41,11 @@
       <div class="probootstrap-overflow">
         <nav class="probootstrap-nav">
           <ul>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="#">首页</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="#">美食推荐</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toIndex">首页</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toIndex">美食推荐</a></li>
             <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="/toAddFood">上传美食</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="portfolio.jsp">我的美食</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="contact.jsp">关于我们</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/getAllFoodByUid">我的美食</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toContact">关于我们</a></li>
           </ul>
         </nav>
         <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">

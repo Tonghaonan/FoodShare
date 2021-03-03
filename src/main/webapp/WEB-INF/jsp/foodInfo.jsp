@@ -19,6 +19,15 @@
     <link rel="stylesheet" href="/static/css/icomoon.css">
     <link rel="stylesheet" href="/static/css/animate.css">
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/showStar.css">
+    <link rel="stylesheet" href="/static/css/comment.css">
+
+
+      <style>
+          .praiseLike{ font-size:66px;  color:#ccc; cursor:pointer;}
+          .collectLike{ font-size:66px;  color:#ccc; cursor:pointer;}
+          .cs{color:#f00;}
+      </style>
 
   </head>
   <body>
@@ -26,18 +35,18 @@
     <aside class="probootstrap-aside js-probootstrap-aside">
       <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
       <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
-        
-        <a href="index.jsp" class="mb-2 d-block probootstrap-logo">Aside</a>
-        <p class="mb-0">Another free html5 bootstrap 4 template by <a href="https://sc.chinaz.com/" target="_blank">uiCookies</a></p>
+
+        <a href="index.jsp" class="mb-2 d-block probootstrap-logo">美食分享</a>
+        <p class="mb-0"><a href="login.HTML" target="_blank">登录</a> / <a href="regist.jsp" target="_blank">注册</a></p>
       </div>
       <div class="probootstrap-overflow">
         <nav class="probootstrap-nav">
           <ul>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="index.jsp">Home</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="about.jsp">About</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="services.jsp">Services</a></li>
-            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="portfolio.jsp">Portfolio</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="contact.jsp">Contact</a></li>
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="/toIndex">首页</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toIndex">美食推荐</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toAddFood">上传美食</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/getAllFoodByUid">我的美食</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toContact">关于我们</a></li>
           </ul>
         </nav>
         <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
@@ -60,20 +69,35 @@
       <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col-xl-8 col-lg-12">
-            <p class="mb-5"><img src="/static/images/img_bg_2.jpg" alt="Free Bootstrap 4 Template by sc.chinaz.com" class="img-fluid"></p>
+            <p class="mb-5"><img src="${foodInfo.image}" alt="Free Bootstrap 4 Template by sc.chinaz.com" class="img-fluid"></p>
 
             <div class="row">
               <div class="col-xl-8 col-lg-12 mx-auto">
-                <h1 class="mb-5">Far Far Away, Behind The Word Mountains</h1>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                <div style="border-radius: 5px;background-color: #ced2db"></div>
+                <c:if test="${empty(praise)}">
+                  <p style="float: left;margin-left: 60%;" class="praiseLike">&#10084;&nbsp;</p>
+                </c:if>
+                <c:if test="${!empty(praise)}">
+                  <p style="float: left;margin-left: 60%;" class="praiseLike cs">&#10084;&nbsp;</p>
+                </c:if>
+                <c:if test="${empty(collect)}">
+                  <p class="collectLike">&#9733;</p>
+                </c:if>
+                <c:if test="${!empty(collect)}">
+                  <p class="collectLike cs">&#9733;</p>
+                </c:if>
+                <h1 class="mb-5">${foodInfo.fname}</h1>
+                 <p>菜系：${foodInfo.cname}</p>
+                <div class="star">
+                  <span>推荐星级：</span>
+                  <c:forEach begin="1" end="${foodInfo.star}" step="1" varStatus="cnt">
+                    <input type="radio" id="rate${cnt.count}" name="star" value="${cnt.count}">
+                    <label for="rate${cnt.count}" title="${foodInfo.star}星"></label>
+                  </c:forEach>
+                </div>
 
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-
-                <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-
-                <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>  
+                <p>美食介绍：${foodInfo.fname}</p>
+              <%--                <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>  --%>
               </div>
             </div>
             
@@ -82,55 +106,48 @@
         <!-- END row -->
 
         <section class="probootstrap-section">
-          <div class="container-fluid">
-            <div class="row mb-5 justify-content-center">
-              <div class="col-md-8">
-                <div class="row">
-                  <div class="col-md-8 mx-auto">
-                    <h2 class="h1 mb-5 mt-0">Related Projects</h2>    
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-            <div class="row mb-5">
-              <div class="col-md-12">
-                <div class="owl-carousel probootstrap-owl">
-                  
-                  <div class="item">
-                    <img src="/static/images/img_2.jpg" class="img-fluid" alt="Free Template by sc.chinaz.com">
-                    <div class="p-4 border border-top-0">
-                      <h4>Craig Smith</h4>
-                      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <img src="/static/images/img_3.jpg" class="img-fluid" alt="Free Template by sc.chinaz.com">
-                    <div class="p-4 border border-top-0">
-                      <h4>Peter Wood</h4>
-                      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <img src="/static/images/img_4.jpg" class="img-fluid" alt="Free Template by sc.chinaz.com">
-                    <div class="p-4 border border-top-0">
-                      <h4>James Carl</h4>
-                      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <img src="/static/images/img_5.jpg" class="img-fluid" alt="Free Template by sc.chinaz.com">
-                    <div class="p-4 border border-top-0">
-                      <h4>Craig Smith</h4>
-                      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+          <div class="comments">
 
-            
+            <div class="comment-wrap">
+                <div class="photo">
+                    <div class="avatar" style="background-color: azure"></div>
+
+                <%--                <div class="avatar" style="background-image: url('/assets/coolboy.jpg')"></div>--%>
+                </div>
+                <div class="comment-block">
+                  <form name="addcomment" action="/saveComment">
+                    <input type="hidden" name="fid" value="${foodInfo.fid}">
+                    <textarea name="content" id="" cols="30" rows="3" placeholder="说两句吧..."></textarea>
+                  </form>
+                </div>
+            </div>
+              <div class="form-group" style="margin-left: 87%;">
+                  <input type="button" onClick="addcomment.submit()" class="btn btn-primary" id="submit" name="submit" value="提交评论">
+              </div>
+
+
+              <c:forEach items="${commentList}" var="comment" varStatus="s">
+                <div class="comment-wrap">
+                    <div class="photo">
+                      <div class="avatar" style="background-image: url('${comment.image}')"></div>
+<%--                      <div class="avatar" style="background-color: azure"></div>--%>
+                    </div>
+                    <div class="comment-block">
+                      <p class="comment-text">${comment.content}</p>
+                      <div class="bottom-comment">
+                          <c:if test="${foodInfo.uid == comment.uid}">
+                              <em>(作者)</em>
+                          </c:if>
+                          <div class="comment-date">${comment.username}</div>
+                          <div class="comment-actions">${comment.createTime}</div>
+                      </div>
+                    </div>
+                </div>
+              </c:forEach>
+              <c:if test="${empty(commentList)}">
+                <div class="fly-none" style="align-content: center;">我来占沙发</div>
+              </c:if>
+
           </div>
         </section>
         <!-- END section -->
@@ -154,7 +171,7 @@
 
 
 
-    <script src="/static/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
     <script src="/static/js/popper.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/owl.carousel.min.js"></script>
@@ -162,5 +179,91 @@
     <script src="/static/js/imagesloaded.pkgd.min.js"></script>
 
     <script src="/static/js/main.js"></script>
+    <script>
+        $(function () {
+            $(".praiseLike").click(function () {
+              let name = $(this).attr("class");
+                if(name.indexOf("cs") != -1){
+                  $.ajax({
+                    type:"POST",
+                    url:"/deletePraise?uid=0&fid="+${foodInfo.fid},
+                    dataType:"json",
+                    success:function(data){
+                      if(data=='0'){
+
+                      }else{
+                        alert("取消点赞失败,请重试")
+                        return ;
+                      }
+                    },
+                    error:function(){
+                      alert("取消点赞失败,请重试")
+                      return ;
+                    }
+                  });
+                }else{
+                  $.ajax({
+                    type:"POST",
+                    url:"/savePraise?uid=0&fid="+${foodInfo.fid},
+                    dataType:"json",
+                    success:function(data){
+                      if(data=='0'){
+
+                      }else{
+                        alert("点赞失败,请重试")
+                        return ;
+                      }
+                    },
+                    error:function(){
+                      alert("点赞失败,请重试")
+                      return ;
+                    }
+                  });
+                }
+                $(this).toggleClass('cs');
+            });
+          $(".collectLike").click(function () {
+            let name = $(this).attr("class");
+            if(name.indexOf("cs") != -1){
+              //包含,调用删除接口
+              $.ajax({
+                type:"POST",
+                url:"/deleteCollect?uid=0&fid="+${foodInfo.fid},
+                dataType:"json",
+                success:function(data){
+                  if(data=='0'){
+                  }else{
+                    alert("取消收藏失败,请重试")
+                    return ;
+                  }
+                },
+                error:function(){
+                  alert("取消收藏失败,请重试")
+                  return ;
+                }
+              });
+            }else{
+              //不包含,调用新增接口
+              $.ajax({
+                type:"POST",
+                url:"/saveCollect?uid=0&fid="+${foodInfo.fid},
+                dataType:"json",
+                success:function(data){
+                  if(data=='0'){
+                  }else{
+                    alert("收藏失败,请重试")
+                    return ;
+                  }
+                },
+                error:function(){
+                  alert("收藏失败,请重试")
+                  return ;
+                }
+              });
+            }
+            $(this).toggleClass('cs');
+          })
+        })
+    </script>
   </body>
 </html>

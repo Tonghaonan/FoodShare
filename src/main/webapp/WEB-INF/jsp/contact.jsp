@@ -55,7 +55,7 @@
     <main role="main" class="probootstrap-main js-probootstrap-main">
       <div class="probootstrap-bar">
         <a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span class="oi oi-menu"></span></a>
-        <div class="probootstrap-main-site-logo"><a href="index.jsp">Aside</a></a></div>
+        <div class="probootstrap-main-site-logo"><a href="index.jsp">Aside</a></div>
       </div>
       <div class="container-fluid">
         <div class="row justify-content-center">

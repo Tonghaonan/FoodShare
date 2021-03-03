@@ -19,49 +19,11 @@
     <link rel="stylesheet" href="/static/css/icomoon.css">
     <link rel="stylesheet" href="/static/css/animate.css">
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/showStar.css">
 
 
   </head>
-  <style>
-    .star{
-      display: block;
-      position: relative;
-      /*width: 150px;*/
-      height: 60px;
-      padding: 0;
-      border: none;
-    }
 
-    .star > input{
-      position: absolute;
-      margin-right: -100%;
-      opacity: 0;
-      /*float: left;*/
-    }
-
-    .star > label{
-      position: relative;
-      display: inline-block;
-      float: left;
-      width: 30px;
-      height: 30px;
-      color: transparent;
-      background-image: url("/static/images/star.png");
-      background-repeat: no-repeat;
-      background-position: 0 -30px;
-    }
-
-    .star > span{
-      float: left;
-    }
-
-
-    .star > input:focus + label{
-      outline: none;
-    }
-
-    .star > input:focus~label
-  </style>
   <body>
     <aside class="probootstrap-aside js-probootstrap-aside">
       <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
@@ -81,12 +43,11 @@
       <div class="probootstrap-overflow">
         <nav class="probootstrap-nav">
           <ul>
-            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="#">首页</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="#">美食推荐</a></li>
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="/toIndex">首页</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toIndex">美食推荐</a></li>
             <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toAddFood">上传美食</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="portfolio.jsp">我的美食</a></li>
-            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="contact.jsp">关于我们</a></li>
-            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="toIndex">首页</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/getAllFoodByUid?uid=0">我的美食</a></li>
+            <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="/toContact">关于我们</a></li>
           </ul>
         </nav>
         <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
@@ -176,9 +137,6 @@
     <script src="/static/js/imagesloaded.pkgd.min.js"></script>
 
     <script src="/static/js/main.js"></script>
-    <script type="text/javascript">
-        $(on)
-    </script>
     
   </body>
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--以最新的ie渲染页面-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SSM | Log in</title>
+    <!-- 1：1的页面与移动端显示屏比例 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/dist/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/static/dist/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
+    <!--告诉浏览器外部引入的格式：rel="stylesheet"-->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="/static/plugins/sweetalert/sweetalert.css">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <b>SSM</b>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">后台管理系统</p>
+            <form action="#" onsubmit="return false;" method="post">
+                <div class="form-group">
+                    <div class="alert alert-danger" style="display: none;">错误信息展示栏。</div>
+                </div>
+                <div class="form-group has-feedback">
+                    <span class="fa fa-user form-control-feedback"></span>
+                    <input type="text" id="userName" class="form-control" placeholder="默认账号：admin">
+                </div>
+                <div class="form-group has-feedback">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    <input type="password" id="password" class="form-control" placeholder="默认密码：123456">
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox"> 记住我
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" onclick="login()" class="btn btn-primary btn-block btn-flat">登录
+                        </button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="/static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/dist/js/public.js"></script>
+<script src="/static/plugins/sweetalert/sweetalert.min.js"></script>
+</body>
+</html>

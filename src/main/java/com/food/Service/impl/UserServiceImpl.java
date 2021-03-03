@@ -2,6 +2,8 @@ package com.food.service.impl;
 
 import com.food.dao.UserDao;
 import com.food.service.UserService;
+import com.food.util.PageResult;
+import com.food.util.PageUtil;
 import com.food.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService {
     public User updateByUser() {
         return null;
     }
+
+
 
     @Override
     public boolean login(User user) throws Exception {
@@ -69,5 +73,13 @@ public class UserServiceImpl implements UserService {
         }else {
             return false;
         }
+    }
+
+    @Override
+    public PageResult getAllUser(PageUtil pageUtil) throws Exception {
+        List<User> userList = userDao.getAllUser(pageUtil.getStart(), pageUtil.getLimit());
+        int cnt = userDao.getAllUserCount();
+        PageResult pageResult = new PageResult(userList,cnt,pageUtil.getLimit(),pageUtil.getPage());
+        return pageResult;
     }
 }

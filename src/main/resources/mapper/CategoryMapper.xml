@@ -3,23 +3,31 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.food.dao.CategoryDao">
 
-	<select id="getCategoryByCid" parameterType="java.lang.Integer" resultType="com.food.vo.Category">
-	select * from category where cid=#{cid};
+	<select id="getCategoryByCid" resultType="com.food.vo.Category">
+		select * from category where cid=#{cid};
 	</select>
 
 	<select id="getAllCategory" resultType="com.food.vo.Category">
-	select * from category;
+		select * from category;
+	</select>
+
+	<select id="getAllCategoryByPage" resultType="com.food.vo.Category">
+		select * from category LIMIT #{start}, #{length};
+	</select>
+
+	<select id="getAllCategoryCount" resultType="java.lang.Integer">
+		select count(1) from category;
 	</select>
 	
 	<insert id="saveCategory" parameterType="com.food.vo.Category">
 		insert into category (cname) values (#{cname})
 	</insert>
 
-	<update id="updateCategory" parameterType="com.food.vo.Category">
+	<update id="updateCategory">
 		update category set cname = #{cname} where cid = #{cid}
 	</update>
 
-	<delete id="delectCategory" parameterType="java.lang.Integer">
+	<delete id="deleteCategory">
 		delete from category where cid = #{cid}
 	</delete>
 </mapper>

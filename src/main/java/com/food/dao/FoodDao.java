@@ -20,6 +20,9 @@ public interface FoodDao {
 	//查询所有美食(可以模糊查询)
 	public List<Food> getAllFoodByFname(@Param("fname") String fname) throws Exception;
 
+	//根据美食ID查询美食详细信息
+	public Food getFoodByFid(@Param("fid") int fid) throws Exception;
+
 	// 添加美食
 	public void saveFood(Food food) throws Exception;
 
@@ -27,5 +30,14 @@ public interface FoodDao {
 	public void updateFood(Food food) throws Exception;
 
 	// 删除美食
-	public void delectFood(@Param("fid") int fid) throws Exception;
+	public void deleteFood(@Param("fid") int fid) throws Exception;
+
+	//根据用户id查询用户分享的所有美食
+	public List<Food> getAllFoodByUid(@Param("uid") int uid) throws Exception;
+
+	//分页查询所有美食(可以模糊查询)
+	public List<Food> getAllFoodByFnameAndPage(@Param("fname") String fname,@Param("start") int start, @Param("length") int length) throws Exception;
+
+	//查询所有美食数量(可以模糊查询)
+	public int getAllFoodByFnameCount()throws Exception;
 }

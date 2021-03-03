@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.dao.CommentDao">
+	<select id="getAllCommentByFid" resultType="com.food.vo.Comment">
+		select a.*,b.username,b.image from Comment a,user b where a.uid = b.uid and a.fid = #{fid}
+	</select>
+	
+	<insert id="saveComment" parameterType="com.food.vo.Comment">
+		insert into Comment (content,createTime,fid,uid)
+		values (#{content},#{createTime},#{fid},#{uid})
+	</insert>
+
+	<delete id="deleteComment" parameterType="java.lang.Integer">
+		delete from Comment where comId = #{comId}
+	</delete>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.dao.PraiseDao">
+
+	<select id="getPraiseByFidAndUid" resultType="com.food.vo.Praise">
+		select * from praise where fid = #{fid} and uid = #{uid}
+	</select>
+
+	<select id="getAllFoodByUid" resultType="com.food.vo.Food">
+		select b.* from praise a,food b where a.fid = b.fid and uid = #{uid}
+	</select>
+	
+	<insert id="savePraise" parameterType="com.food.vo.Praise">
+		insert into praise (uid,fid)
+		values (#{uid},#{fid})
+	</insert>
+
+	<delete id="deletePraise" parameterType="java.lang.Integer">
+		delete from praise where uid = #{uid} and fid = #{fid};
+	</delete>
+</mapper>

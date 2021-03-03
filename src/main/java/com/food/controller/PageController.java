@@ -32,7 +32,7 @@ public class PageController {
 
     @RequestMapping("/toLogin")
     public String toLogin(){
-        return "login";
+        return "/jsp/login";
     }
 //    首页
     @RequestMapping("/toIndex")
@@ -45,35 +45,35 @@ public class PageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "index";
+        return "/jsp/index";
     }
 //    注册
     @RequestMapping("/toRegist")
     public String toRegist(){
-        return "regist";
+        return "/jsp/regist";
     }
 
     @RequestMapping("/toContact")
     public String toContact(){
-        return "contact";
+        return "/jsp/contact";
     }
     @RequestMapping("/toPortfolio")
     public String toPortfolio(){
-        return "portfolio";
+        return "/jsp/portfolio";
     }
     @RequestMapping("/toAbout")
     public String toAbout(){
-        return "about";
+        return "/jsp/about";
     }
     @RequestMapping("/toServices")
     public String toServices(){
-        return "services";
+        return "/jsp/services";
     }
     @RequestMapping("/toSingle")
     public String toSingle(){
-        return "single";
+        return "/jsp/single";
     }
-    @RequestMapping("/toAddFood")
+    @RequestMapping("toAddFood")
     public String toAddFood(Model model){
         try {
             List<Category> categoryList = categoryService.getAllCategory();
@@ -81,7 +81,9 @@ public class PageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "addFood";
+        return "/jsp/addFood";
     }
+
+
 
 }

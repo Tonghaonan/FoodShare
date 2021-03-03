@@ -26,7 +26,7 @@ public interface UserDao {
 	//根据用户名查询用户是否存在
 	public List<User> getUserByUsername(@Param("username") String username)throws Exception;
 	//查询所有用户
-	public List<User> getAllUser(@Param("start") int start, @Param("length") int length, @Param("isadmin") String isadmin, @Param("username") String username)throws Exception;
+	public List<User> getAllUser(@Param("start") int start, @Param("length") int length)throws Exception;
 	//查询所有用户数量
-	public int getAllUserCount(@Param("start") int start, @Param("length") int length, @Param("isadmin") String isadmin, @Param("username") String username)throws Exception;
+	public int getAllUserCount()throws Exception;
 }

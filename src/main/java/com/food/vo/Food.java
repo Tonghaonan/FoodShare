@@ -33,6 +33,14 @@ public class Food {
      * 创建时间
      */
     private String createTime;
+    /**
+     * 发布者名称
+     */
+    private String username;
+    /**
+     * 所属类别
+     */
+    private String cname;
 
     public int getFid() {
         return fid;
@@ -96,5 +104,21 @@ public class Food {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 }

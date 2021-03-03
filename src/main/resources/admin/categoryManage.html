@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>美食分享系统管理端 | 美食分类管理页</title>
+    <!-- jqgrid ui -->
+    <link href="/static/plugins/jqgrid-5.3.0/ui.jqgrid-bootstrap4.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.css">
+    <!-- sweet alert -->
+    <link rel="stylesheet" href="/static/plugins/sweetalert/sweetalert.css">
+    <link href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/static/dist/css/main.css" rel="stylesheet"/>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
+    <!-- sweet alert -->
+    <link href="/static/plugins/custombox/custombox.min.css" rel="stylesheet">
+
+</head>
+<body class="hold-transition sidebar-mini" onLoad="checkCookie();">
+<div class="wrapper">
+
+    <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="index.html" class="nav-link">Home</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <div class="dropdown-menu dropdown-donate-lg dropdown-menu-right">
+                    <a href="##" class="dropdown-item">SSM</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user">&nbsp;&nbsp;作者</i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <a href="index.html" class="brand-link">
+            <span class="brand-text font-weight-light">美食分享系统管理端</span>
+        </a>
+
+        <div class="sidebar">
+
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <li class="nav-header">管理模块</li>
+                    <li class="nav-item">
+                        <a href="/admin/userManage.html" class="nav-link">
+                            <i class="fa fa-user-circle nav-icon"></i>
+                            <p>
+                                用户管理
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/categoryManage.html" class="nav-link">
+                            <i class="nav-icon fa fa-edit"></i>
+                            <p>
+                                美食分类管理
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/foodManage.html" class="nav-link">
+                            <i class="nav-icon fa fa-edit"></i>
+                            <p>
+                                美食信息管理
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/commentManage.html" class="nav-link">
+                            <i class="nav-icon fa fa-edit"></i>
+                            <p>
+                                评论管理
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">美食分类管理页</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="index.html">主页</a></li>
+                            <li class="breadcrumb-item active">美食分类管理页</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="grid-btn">
+                                <button class="btn btn-info" onclick="categoryAdd()"><i
+                                        class="fa fa-plus"></i>&nbsp;新增
+                                </button>
+                                <button class="btn btn-warning" onclick="categoryEdit()"><i
+                                        class="fa fa-edit"></i>&nbsp;编辑
+                                </button>
+                                </button>
+                                <button class="btn btn-danger" onclick="categoryDel()"><i
+                                        class="fa fa-remove"></i>&nbsp;删除
+                                </button>
+                            </div>
+                            <table id="jqGrid" class="table table-bordered">
+                            </table>
+                            <div id="jqGridPager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content" id="modalAdd" style="display: none">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 400px;height: 420px;">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="userModalLabel">美食分类添加</h6>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <div class="alert alert-danger add-error-info">错误信息展示栏。</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cnameAdd" class="control-label">美食分类名称:</label>
+                                <input type="text" class="form-control" id="cnameAdd">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="cancelAdd">取消</button>
+                        <button type="button" class="btn btn-primary" id="saveButton">确认</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.content -->
+        </div>
+
+        <div class="content" id="modalEdit" style="display: none">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 400px;height: 320px;">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modalEditLabel">美食分类编辑</h6>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <input type="hidden" id="cidEdit" value="0">
+                            <div class="form-group">
+                                <div class="alert alert-danger edit-error-info">错误信息展示栏。</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cnameEdit" class="control-label">美食分类名称:</label>
+                                <input type="text" class="form-control" id="cnameEdit">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="cancelEdit">取消</button>
+                        <button type="button" class="btn btn-primary" id="editButton">确认</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.content -->
+        </div>
+
+    </div>
+    <footer class="main-footer">
+        <strong>Copyright &copy; 2017-2018 <a href="##">13blog.site</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 2.0
+        </div>
+    </footer>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+</div>
+
+<script src="/static/plugins/jquery/jquery.min.js"></script>
+<script src="/static/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script src="/static/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/plugins/jqgrid-5.3.0/grid.locale-cn.js"></script>
+<script src="/static/plugins/jqgrid-5.3.0/jquery.jqGrid.min.js"></script>
+<script src="/static/plugins/custombox/custombox.min.js"></script>
+<script src="/static/plugins/custombox/custombox.legacy.min.js"></script>
+<script src="/static/dist/js/public.js"></script>
+<script src="/static/dist/js/category.js"></script>
+<script src="/static/dist/js/adminlte.js"></script>
+</body>
+</html>

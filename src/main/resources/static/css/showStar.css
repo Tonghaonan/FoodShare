@@ -1,0 +1,38 @@
+.star{
+    display: block;
+    position: relative;
+    /*width: 150px;*/
+    height: 60px;
+    padding: 0;
+    border: none;
+}
+
+.star > input{
+    position: absolute;
+    margin-right: -100%;
+    opacity: 0;
+    /*float: left;*/
+}
+
+.star > label{
+    position: relative;
+    display: inline-block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    color: transparent;
+    background-image: url("/static/images/star.png");
+    background-repeat: no-repeat;
+    background-position: 0 -30px;
+}
+
+.star > span{
+    float: left;
+}
+
+
+.star > input:focus + label{
+    outline: none;
+}
+
+.star > input:focus~label

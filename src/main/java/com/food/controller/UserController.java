@@ -1,18 +1,23 @@
 package com.food.controller;
 
 import com.food.service.UserService;
+import com.food.util.PageResult;
+import com.food.util.PageUtil;
 import com.food.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -20,6 +25,14 @@ public class UserController {
     private UserService userService;
     @Autowired
     private HttpServletRequest request;
+
+    @RequestMapping("getAllUser")
+    @ResponseBody
+    public PageResult getAllUser(@RequestParam("page") int page, @RequestParam("limit") int limit) throws Exception {
+        //查询列表数据
+        PageUtil pageUtil = new PageUtil(page,limit);
+        return userService.getAllUser(pageUtil);
+    }
 
     @RequestMapping("editUserInfo")
     public String editUserInfo(HttpServletRequest request, Model model){

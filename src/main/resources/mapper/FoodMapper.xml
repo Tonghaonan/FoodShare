@@ -7,7 +7,7 @@
 		select * from food
 		<trim prefix="WHERE" prefixOverrides="AND | OR" >
 			<if test="cid != null and cid != 0">
-				AND BINARY cid = #{cid}
+				AND cid = #{cid}
 			</if>
 			<if test="fname != null and fname != ''">
 				AND BINARY fname like CONCAT(CONCAT('%', #{fname}), '%')
@@ -21,6 +21,30 @@
 			AND BINARY fname = #{fname}
 		</if>
 	</select>
+
+	<select id="getAllFoodByFnameAndPage" resultType="com.food.vo.Food">
+		select f.*,c.cname from food f,category c where f.cid = c.cid
+		<if test="fname != null and fname != ''">
+			AND BINARY fname = #{fname}
+		</if>
+		LIMIT #{start}, #{length}
+	</select>
+
+	<select id="getAllFoodByFnameCount" resultType="java.lang.Integer">
+		select count(1) from food
+		<if test="fname != null and fname != ''">
+			AND BINARY fname = #{fname}
+		</if>
+	</select>
+
+	<select id="getAllFoodByUid" resultType="com.food.vo.Food">
+		select * from food f,category c where f.uid = #{uid} and c.cid = f.cid;
+	</select>
+
+	<select id="getFoodByFid" resultType="com.food.vo.Food">
+		select * from food f,category c where f.fid = #{fid} and c.cid = f.cid;
+	</select>
+
 	
 	<insert id="saveFood" parameterType="com.food.vo.Food">
 		insert into food (uid,fname,detail,cid,image,star,createTime)
@@ -32,7 +56,7 @@
 		 where fid = #{fid}
 	</update>
 
-	<delete id="delectFood" parameterType="java.lang.Integer">
+	<delete id="deleteFood" parameterType="java.lang.Integer">
 		delete from food where fid = #{fid}
 	</delete>
 </mapper>
